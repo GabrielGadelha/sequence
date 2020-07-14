@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class BaseDAO<VO>{
+public abstract class BaseDAO<VO> implements BaseInterDAO<VO>{
 	private static Connection conn = null;
 	private static final String url = "jdbc:mariadb://localhost:3306/sequence";
 	private static final String user = "poo_20203";
@@ -35,9 +35,10 @@ public abstract class BaseDAO<VO>{
 		}		
 	}
 	public abstract void inserir(VO vo) throws SQLException;
-	public abstract void deletar(VO vo);
-	public abstract void atualizar(VO vo);
-	public abstract ResultSet listar();
-	public abstract ResultSet listarPorId(VO vo);
+	public abstract void deletar(VO vo)throws SQLException;
+	public abstract void atualizar(VO vo) throws SQLException;
+	public abstract ResultSet listar() throws SQLException;
+	public abstract ResultSet listarPorId(VO vo) throws SQLException;
+	public abstract ResultSet listarPorNome(VO entity) throws SQLException;
 	
 }
