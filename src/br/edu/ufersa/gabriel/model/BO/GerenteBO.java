@@ -3,16 +3,17 @@ package br.edu.ufersa.gabriel.model.BO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import br.edu.ufersa.gabriel.exception.InsertException;
+import br.edu.ufersa.gabriel.model.DAO.BaseInterDAO;
 import br.edu.ufersa.gabriel.model.DAO.GerenteDAO;
 import br.edu.ufersa.gabriel.model.DAO.PessoaDAO;
 import br.edu.ufersa.gabriel.model.VO.GerenteVO;
 
 
 public class GerenteBO implements BaseInterBO<GerenteVO>{
-	PessoaDAO<GerenteVO> dao = new GerenteDAO();
+	BaseInterDAO<GerenteVO> dao = new GerenteDAO();
 	public void cadastrar(GerenteVO vo) throws InsertException {
-		ResultSet rs = dao.listarPorCPF(vo);
 		try {
+			ResultSet rs = dao.listarPorCPF(vo);
 			if (rs.next()) {
 				throw new InsertException("Impossível cadastrar, pois já existe responsável com este CPF");
 			}
