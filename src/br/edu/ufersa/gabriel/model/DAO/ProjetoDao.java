@@ -1,3 +1,5 @@
-adfhksdhflsda
+package br.edu.ufersa.gabriel.model.DAO;
 
-String a = "select * from documentos where id="+ id;
+class ProjetoDAO{
+	
+}

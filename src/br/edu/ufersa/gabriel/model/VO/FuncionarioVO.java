@@ -1,45 +1,25 @@
 
 package br.edu.ufersa.gabriel.model.VO;
 import java.util.Calendar;
-public class FuncionarioVO{
-    String nome;
-    String cpf;
-    String email;
-    public double salario;
-    Calendar dataDeAdmissao;
+public class FuncionarioVO extends PessoaVO{
+	
+    private double salario;
+    private Calendar dataDeAdmissao;
+    private Long idFunc;
+    private Long idProjeto;
 
     
-    
-    public String getNome() {
-		return nome;
+	public Long getIdProjeto() {
+		return idProjeto;
 	}
-	public void setNome(String nome) {
-		if (nome != null) {
-			System.out.println("sem nome");
-			this.nome = "pessoa sem nome";
-		}else {
-			if (nome.equals("")) {
-				
-				System.out.println("sem nome");
-				this.nome = "pessoa sem nome";
-			}
-			else {
-				this.nome = nome;
-			}
-		}
-			
+	public void setIdProjeto(Long idProjeto) {
+		this.idProjeto = idProjeto;
 	}
-	public String getCpf() {
-		return cpf;
+	public Long getIdFunc() {
+		return idFunc;
 	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setIdFunc(Long idFunc) {
+		this.idFunc = idFunc;
 	}
 	public double getSalario() {
 		return salario;
@@ -54,19 +34,18 @@ public class FuncionarioVO{
 		//verificar se a dataAdmissao >= a dataInicio
 		this.dataDeAdmissao = dataDeAdmissao;
 	}
-	public FuncionarioVO(){
-
+	
+    public FuncionarioVO(){
     }
-    public FuncionarioVO(String nome){
-       setNome(nome);
-    }
-    public FuncionarioVO(String nome, String cpf){
-      setNome(nome);
-      setCpf(cpf);
-    }
-    public FuncionarioVO(double salario){
-        setSalario(salario);
-    }
+   
+    public String toString() {
+		String saida = "";
+		saida = saida + "\n" + "IdFunc: " + idFunc;
+		saida = super.toString();
+		saida = saida + "\n" + "Salário: " + salario;
+		saida = saida + "\n" + "Data de admissão: " + dataDeAdmissao;
+		return saida;
+	}
 
   
 }
