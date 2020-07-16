@@ -1,6 +1,6 @@
 package br.edu.ufersa.gabriel.model.BO;
 
-import java.sql.ResultSet;
+import java.sql.ResultSet; 
 import java.sql.SQLException;
 
 import br.edu.ufersa.gabriel.exception.InsertException;
@@ -8,10 +8,10 @@ import br.edu.ufersa.gabriel.model.DAO.PessoaDAO;
 import br.edu.ufersa.gabriel.model.DAO.ResponsavelDAO;
 import br.edu.ufersa.gabriel.model.VO.ResponsavelVO;
 
-public class ResponsavelBO implements BaseInterBO<ResponsavelVO>{
+public class ResponsavelBO extends BaseBO<ResponsavelVO> implements BaseInterBO<ResponsavelVO>{
 	PessoaDAO<ResponsavelVO> dao = new ResponsavelDAO();
 	public void cadastrar(ResponsavelVO vo) throws InsertException {
-		ResultSet rs = dao.listarPorCPF(vo);
+		ResultSet rs = dao.buscarPorCPF(vo);
 		try {
 			if (rs.next()) {
 				throw new InsertException("Impossível cadastrar, pois já existe responsável com este CPF");
@@ -24,31 +24,7 @@ public class ResponsavelBO implements BaseInterBO<ResponsavelVO>{
 			throw new InsertException(e.getMessage());
 		}
 	}
-	@Override
-	public void buscarPorCPF(ResponsavelVO vo) throws InsertException {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void buscarPorNome(ResponsavelVO vo) throws InsertException {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void buscarPorId(ResponsavelVO vo) throws InsertException {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void buscarPorData(ResponsavelVO vo) throws InsertException {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void buscar() throws InsertException {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	@Override
 	public void alterar(ResponsavelVO vo) throws InsertException {
 		// TODO Auto-generated method stub

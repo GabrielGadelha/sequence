@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.edu.ufersa.gabriel.controller.FrontController">
+   <children>
+      <ImageView fitHeight="143.0" fitWidth="600.0" layoutX="-1.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@TOPO.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="187.0" layoutY="243.0" text="Montar a tela do GERENTE" />
+      <Button fx:id="sair" layoutX="243.0" layoutY="331.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #993399;" text="Sair" textFill="#fffefe" />
+   </children>
+</Pane>

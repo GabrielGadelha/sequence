@@ -1,15 +1,16 @@
 package br.edu.ufersa.gabriel.model.DAO;
 
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import br.edu.ufersa.gabriel.model.VO.GerenteVO;
 
-public class GerenteDAO extends UsuarioDAO<GerenteVO>{
+
+public class GerenteDAO<VO extends GerenteVO> extends UsuarioDAO<VO>  implements UsuarioInterDAO<VO>{
 	@Override
-	public void inserir(GerenteVO vo) {
+	public void inserir(VO vo) {
 		try {
 			super.inserir(vo);
 			String sql = "insert into Gerente (salario, id_pessoa, id_usuario) values (?,?,?)";
@@ -34,4 +35,22 @@ public class GerenteDAO extends UsuarioDAO<GerenteVO>{
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public ResultSet buscarPorIdPessoa(VO vo) {
+		String sql = "select * from Gerente where id_pessoa=?";
+		PreparedStatement ptst;
+		ResultSet rs= null;
+		System.out.println(vo.getIdPessoa())	;	
+ 		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getIdPessoa());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 }

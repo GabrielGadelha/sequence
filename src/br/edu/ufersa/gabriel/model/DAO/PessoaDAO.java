@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import br.edu.ufersa.gabriel.model.VO.PessoaVO;
 
-public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
+public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO> implements PessoaInterDAO<VO>{
 	@Override
-	public void inserir(VO vo) throws SQLException {
+	public void inserir(VO vo){
 		String sql = "insert into Pessoa (nome,cpf,email,telefone) values (?,?,?,?)";
 		PreparedStatement ptst;
 		try {
@@ -38,7 +38,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 	}
 	
 	@Override
-	public void deletar(VO vo) {
+	public void deletar(VO vo){
 		String sql = "delete from Pessoa where cpf = ?";
 		PreparedStatement ptst;
 		try {
@@ -51,7 +51,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 		}
 	}
 	@Override
-	public void atualizar(VO vo) {
+	public void atualizar(VO vo){
 		String sql = "update Pessoa set nome = ? where id= ?";
 		PreparedStatement ptst;
 		try {
@@ -80,26 +80,9 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 		}
 		return rs;
 	}
-	public ResultSet listar2() {
-		String sql = "select * from Pessoa";
-		PreparedStatement ptst;
-		ResultSet rs = null;
-				
- 		try {
-			ptst = getConnection().prepareStatement(sql);
-			//ptst.setInt(1,2);
-			System.out.println(ptst);
-			rs = ptst.executeQuery(sql);
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
- 		return rs;
-	}
 	
 	@Override
-	public ResultSet listarPorId(VO vo) {
+	public ResultSet buscarPorId(VO vo){
 		String sql = "select * from Pessoa where id=?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -116,7 +99,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 		}
 		return rs;
 	}
-	public ResultSet listarPorCPF(VO vo) {
+	public ResultSet buscarPorCPF(VO vo){
 		String sql = "select * from Pessoa where cpf = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -131,7 +114,7 @@ public class PessoaDAO<VO extends PessoaVO> extends BaseDAO<VO>{
 		}
 		return rs;
 	}
-	public ResultSet listarPorNome(VO vo) {
+	public ResultSet buscarPorNome(VO vo){
 		String sql = "select * from Pessoa where cpf = ?";
 		PreparedStatement ptst;
 		ResultSet rs = null;

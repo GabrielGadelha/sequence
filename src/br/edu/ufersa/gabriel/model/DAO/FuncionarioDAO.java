@@ -82,7 +82,7 @@ public class FuncionarioDAO extends PessoaDAO<FuncionarioVO>{
 	}
 	
 	@Override
-	public ResultSet listarPorId(FuncionarioVO vo) {
+	public ResultSet buscarPorId(FuncionarioVO vo) {
 		String sql = "select * from Pessoa where id=?";
 		PreparedStatement ptst;
 		ResultSet rs = null;

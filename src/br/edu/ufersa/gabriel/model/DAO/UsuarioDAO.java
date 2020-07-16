@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 import br.edu.ufersa.gabriel.model.VO.UsuarioVO;
 
-public class UsuarioDAO<VO extends UsuarioVO> extends PessoaDAO<VO>{
+public class UsuarioDAO<VO extends UsuarioVO> extends PessoaDAO<VO>  implements UsuarioInterDAO<VO>{
 	@Override
 	public void inserir(VO vo) {
 		try {
@@ -35,19 +35,53 @@ public class UsuarioDAO<VO extends UsuarioVO> extends PessoaDAO<VO>{
 		}
 	}
 	@Override
-	public ResultSet listarPorId(VO vo) {
-		String sql = "select * from Pessoa where id=?";
+	public ResultSet buscarPorId(VO vo) {
+		String sql = "select * from Usuario where id=?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
 				
  		try {
 			ptst = getConnection().prepareStatement(sql);
-			ptst.setInt(1, 2);
-			rs = ptst.executeQuery(sql);
+			ptst.setLong(1, vo.getIdUsu());
+			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return rs;
 	}
+	@Override
+	public ResultSet buscarPorLogin(VO vo) {
+		String sql = "select p.id as pessoaId,p.nome,p.cpf,p.telefone,p.email as email,u.id as usuId, u.login, u.senha"
+				+ " from Pessoa p, Usuario u where u.login=? and p.id=u.id_pessoa";
+		PreparedStatement ptst;
+		ResultSet rs = null;
+				
+ 		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setString(1, vo.getLogin());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	@Override
+	public ResultSet buscarPorIdPessoa(VO vo) {
+		String sql = "select * from Usuario where id_pessoa=?";
+		PreparedStatement ptst;
+		ResultSet rs= null;
+		System.out.println(vo.getIdPessoa())	;	
+ 		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getIdPessoa());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 }

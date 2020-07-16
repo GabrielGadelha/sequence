@@ -8,9 +8,9 @@ import java.sql.Statement;
 import br.edu.ufersa.gabriel.model.VO.ResponsavelVO;
 
 
-public class ResponsavelDAO extends UsuarioDAO<ResponsavelVO>{
+public class ResponsavelDAO<VO extends ResponsavelVO> extends UsuarioDAO<VO> implements UsuarioInterDAO<VO>{
 	@Override
-	public void inserir(ResponsavelVO vo) {
+	public void inserir(VO vo) {
 		try {
 			super.inserir(vo);
 			String sql = "insert into Responsavel (departamento, id_usuario, id_pessoa) values (?,?,?)";
@@ -36,7 +36,7 @@ public class ResponsavelDAO extends UsuarioDAO<ResponsavelVO>{
 		}
 	}
 	@Override
-	public ResultSet listarPorId(ResponsavelVO vo) {
+	public ResultSet buscarPorId(VO vo) {
 		String sql = "select * from Pessoa where id=?";
 		PreparedStatement ptst;
 		ResultSet rs = null;
@@ -51,4 +51,21 @@ public class ResponsavelDAO extends UsuarioDAO<ResponsavelVO>{
 		}
 		return rs;
 	}
+	@Override
+	public ResultSet buscarPorIdPessoa(VO vo) {
+		String sql = "select * from Responsavel where id_pessoa=?";
+		PreparedStatement ptst;
+		ResultSet rs= null;
+		System.out.println(vo.getIdPessoa())	;	
+ 		try {
+			ptst = getConnection().prepareStatement(sql);
+			ptst.setLong(1, vo.getIdPessoa());
+			rs = ptst.executeQuery();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 }
