@@ -2,13 +2,16 @@ package br.edu.ufersa.gabriel.model.BO;
 
 import java.sql.ResultSet; 
 import java.sql.SQLException;
+import java.util.List;
+
 import br.edu.ufersa.gabriel.exception.InsertException;
+import br.edu.ufersa.gabriel.exception.NotFoundException;
 import br.edu.ufersa.gabriel.model.DAO.GerenteDAO;
 import br.edu.ufersa.gabriel.model.DAO.UsuarioInterDAO;
 import br.edu.ufersa.gabriel.model.VO.GerenteVO;
 
 
-public class GerenteBO extends BaseBO<GerenteVO> implements BaseInterBO<GerenteVO>{
+public class GerenteBO implements BaseInterBO<GerenteVO>{
 	static private UsuarioInterDAO<GerenteVO> dao = new GerenteDAO<GerenteVO>();
 	public void cadastrar(GerenteVO vo) throws InsertException {
 		try {
@@ -34,5 +37,17 @@ public class GerenteBO extends BaseBO<GerenteVO> implements BaseInterBO<GerenteV
 	public void remover(GerenteVO vo) throws InsertException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void buscarPorId(GerenteVO vo) throws NotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<GerenteVO> listar() throws InsertException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

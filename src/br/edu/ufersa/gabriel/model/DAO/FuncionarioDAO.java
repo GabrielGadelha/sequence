@@ -67,7 +67,7 @@ public class FuncionarioDAO extends PessoaDAO<FuncionarioVO>{
 	}
 	@Override
 	public ResultSet listar() {
-		String sql = "select * from Pessoa";
+		String sql = "select * from Funcionario";
 		Statement st;
 		ResultSet rs = null;
 				
@@ -90,7 +90,7 @@ public class FuncionarioDAO extends PessoaDAO<FuncionarioVO>{
  		try {
 			ptst = getConnection().prepareStatement(sql);
 			ptst.setLong(1, vo.getIdFunc());
-			rs = ptst.executeQuery(sql);
+			rs = ptst.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

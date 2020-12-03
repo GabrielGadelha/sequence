@@ -2,13 +2,15 @@ package br.edu.ufersa.gabriel.model.BO;
 
 import java.sql.ResultSet; 
 import java.sql.SQLException;
+import java.util.List;
 
 import br.edu.ufersa.gabriel.exception.InsertException;
+import br.edu.ufersa.gabriel.exception.NotFoundException;
 import br.edu.ufersa.gabriel.model.DAO.PessoaDAO;
 import br.edu.ufersa.gabriel.model.DAO.ResponsavelDAO;
 import br.edu.ufersa.gabriel.model.VO.ResponsavelVO;
 
-public class ResponsavelBO extends BaseBO<ResponsavelVO> implements BaseInterBO<ResponsavelVO>{
+public class ResponsavelBO implements BaseInterBO<ResponsavelVO>{
 	PessoaDAO<ResponsavelVO> dao = new ResponsavelDAO();
 	public void cadastrar(ResponsavelVO vo) throws InsertException {
 		ResultSet rs = dao.buscarPorCPF(vo);
@@ -34,6 +36,18 @@ public class ResponsavelBO extends BaseBO<ResponsavelVO> implements BaseInterBO<
 	public void remover(ResponsavelVO vo) throws InsertException {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void buscarPorId(ResponsavelVO vo) throws NotFoundException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<ResponsavelVO> listar() throws InsertException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

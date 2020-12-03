@@ -1,6 +1,7 @@
 package br.edu.ufersa.gabriel.model.DAO;
 
 import java.sql.ResultSet;
+import java.util.Calendar;
 import java.util.List;
 
 import br.edu.ufersa.gabriel.model.VO.FuncionarioVO;
@@ -30,10 +31,20 @@ public class Teste {
 		
 		//dao2.editar(vo);
 		//dao2.editar(vo2);
+		FuncionarioDAO funcDAO = new FuncionarioDAO();
 		ResultSet rs; 
 		try {
-			rs = dao2.buscarPorLogin(vo);
-			System.out.println(rs.next());
+			rs = funcDAO.listar();
+			if(rs.next()) {
+				Calendar dataAdmissao = Calendar.getInstance();
+				dataAdmissao.setTime(rs.getDate("data_admissao"));
+				String saida = "DIA: " + dataAdmissao.get(Calendar.DAY_OF_MONTH) + "\n"+
+						"MÊS: " +  dataAdmissao.get(Calendar.MONTH) + "\n" +
+						"ANO: " +  dataAdmissao.get(Calendar.YEAR);
+				System.out.println(saida);
+			}
+				
+			
 		}
 		catch(Exception e) {
 			

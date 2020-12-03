@@ -15,14 +15,14 @@ public class Controlador {
 	@FXML private TextField login;
 	@FXML private TextField senha;
 	
-	UsuarioInterBO<UsuarioVO> usuBO = new UsuarioBO<UsuarioVO>();
+	PessoaBO<UsuarioVO> usuBO = new UsuarioBO<UsuarioVO>();
 	
 	public void autenticar(ActionEvent event) throws Exception{
 		System.out.println("CHegou aqui!");
 		UsuarioVO vo = new UsuarioVO();
 		vo.setLogin(login.getText());
 		vo.setSenha(senha.getText());
-		
+		usuBO = new FuncionarioBO<Funcionario>();
 		try
 		{
 			UsuarioVO autenticado = usuBO.autenticar(vo);
